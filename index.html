@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>25道情景实测｜你遇到的是哪一类NPD</title>
+<meta name="description" content="男女通用关系行为测试，识别6类自恋型人格表现，获取对应的自救脱身方案。趣味心理参考，不做临床诊断。" />
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+    background: #f4f6fa;
+    color: #1f2430;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .app {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 18px 48px;
+  }
+
+  .card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(20, 40, 90, 0.08);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    color: #111827;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .disclaimer {
+    background: #eef2ff;
+    border-left: 4px solid #7c83ff;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #4b5563;
+    margin-bottom: 24px;
+  }
+
+  .progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    color: #4b5563;
+    font-size: 14px;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    margin-right: 12px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #7c83ff, #5b6ef7);
+    border-radius: 999px;
+    transition: width 0.3s ease;
+  }
+
+  .question {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 14px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .option:hover {
+    border-color: #c7d2fe;
+    background: #f1f5ff;
+    transform: translateY(-1px);
+  }
+
+  .option.selected {
+    background: #eef2ff;
+    border-color: #7c83ff;
+    color: #3730a3;
+    font-weight: 600;
+  }
+
+  .btn {
+    display: inline-block;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #4f46e5;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 22px;
+    border-radius: 14px;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+
+  .btn:hover {
+    background: #4338ca;
+  }
+
+  .btn:disabled {
+    background: #a5b4fc;
+    cursor: not-allowed;
+  }
+
+  .btn-secondary {
+    background: #ffffff;
+    color: #4f46e5;
+    border: 1px solid #c7d2fe;
+  }
+
+  .btn-secondary:hover {
+    background: #eef2ff;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .footer {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 12px;
+    margin-top: 30px;
+  }
+
+  /* 登录密码页样式 */
+  .pwd-page{
+    min-height: 80vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .pwd-card{
+    width:100%;
+    max-width:500px;
+    background:#fff;
+    border-radius:18px;
+    padding:30px 24px;
+    box-shadow:0 10px 30px rgba(20, 40, 90, 0.08);
+  }
+  .pwd-title{
+    text-align:center;
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:20px;
+    color:#111827;
+  }
+  .pwd-input{
+    width:100%;
+    padding:14px 16px;
+    border:1px solid #d1d5db;
+    border-radius:12px;
+    font-size:18px;
+    text-align:center;
+    letter-spacing:8px;
+    margin-bottom:14px;
+    outline:none;
+  }
+  .pwd-input:focus{
+    border-color:#7c83ff;
+  }
+  .err-txt{
+    color:#dc2626;
+    font-size:13px;
+    text-align:center;
+    display:none;
+    margin-bottom:12px;
+  }
+
+  #testPage{
+    display:none;
+  }
+
+  .result-block{
+    margin-top:20px;
+  }
+  .result-badge {
+    display: inline-block;
+    background: #eef2ff;
+    color: #4338ca;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .result-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 10px;
+  }
+  .result-text {
+    color: #4b5563;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  .subtype-card {
+    background: #f9fafb;
+    border-left: 4px solid #7c83ff;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 16px;
+  }
+  .subtype-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 10px;
+  }
+  .subtype-section {
+    font-size: 14px;
+    color: #374151;
+    margin-bottom: 12px;
+  }
+  .subtype-section strong {
+    color: #4338ca;
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 20px;
+    }
+    .question {
+      font-size: 15px;
+    }
+    .option {
+      font-size: 14px;
+      padding: 13px 14px;
+    }
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+
+<body>
+<div class="app">
+  <!-- 首页密码锁页面，打开链接先看到这个 -->
+  <div id="pwdPage" class="pwd-page">
+    <div class="pwd-card">
+      <div class="pwd-title">请输入访问密码，进入测试</div>
+      <input type="text" class="pwd-input" id="accessPwd" maxlength="4" placeholder="4位数字">
+      <div class="err-txt" id="pwdErr">密码错误，请重新输入</div>
+      <button class="btn" style="width:100%" id="enterBtn">进入测试</button>
+    </div>
+  </div>
+
+  <!-- 测试页面，密码正确才会显示 -->
+  <div id="testPage">
+    <div class="card">
+      <h1>25道情景实测｜你遇到的是哪一类NPD</h1>
+      <div class="subtitle">男女通用 · 关系行为参考 · 识别6类自恋型人格表现</div>
+
+      <div class="disclaimer">
+        本测试为趣味心理参考，仅用于观察关系中的行为模式，不能作为临床人格诊断。
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <span id="progressText">1 / 25</span>
+      </div>
+
+      <div id="questionsWrap"></div>
+
+      <div class="center" style="margin-top: 24px;">
+        <button class="btn" id="prevBtn" style="display:none">上一题</button>
+        <button class="btn btn-secondary" id="nextBtn">下一题</button>
+        <button class="btn" id="submitBtn" style="display:none">提交查看结果</button>
+      </div>
+    </div>
+
+    <div class="card result-block" id="resultCard" style="display:none;">
+      <div class="result-badge">你的测试结果</div>
+      <div class="result-title" id="previewTitle"></div>
+      <div class="result-text" id="previewText"></div>
+      <div id="fullResult"></div>
+    </div>
+
+    <div class="footer">
+      仅供关系行为观察与自我保护参考。
+    </div>
+  </div>
+</div>
+
+<script>
+// 访问密码
+const PASS_CODE = "1234";
+
+const pwdPage = document.getElementById("pwdPage");
+const testPage = document.getElementById("testPage");
+const accessPwd = document.getElementById("accessPwd");
+const enterBtn = document.getElementById("enterBtn");
+const pwdErr = document.getElementById("pwdErr");
+
+enterBtn.onclick = ()=>{
+  const val = accessPwd.value.trim();
+  if(val === PASS_CODE){
+    pwdPage.style.display = "none";
+    testPage.style.display = "block";
+    renderQuestion(); // 加载题目
+  }else{
+    pwdErr.style.display = "block";
+  }
+}
+accessPwd.onkeydown = (e)=>{
+  if(e.key === "Enter") enterBtn.click();
+}
+
+// 题目数据
+const questions = [
+  {
+    q: "1. 你升职、加薪、拿到好成绩，分享喜悦时，对方（他/她）通常？",
+    opts: [
+      "A. 真心替你开心，夸赞你的努力值得",
+      "B. 淡淡泼冷水：这有啥，换谁都能做到",
+      "C. 贬低平台：只是你们门槛低，不是你厉害",
+      "D. 表面应付夸奖，转头立刻炫耀自己更牛的经历"
+    ],
+    score: ["A0", "B1", "C1", "D2"]
+  },
+  {
+    q: "2. 你们发生矛盾，明明是对方（他/她）做错在先，对方（他/她）会？",
+    opts: [
+      "A. 主动认错，好好沟通解决",
+      "B. 转移责任，说是你情绪不好引发争吵",
+      "C. 疯狂卖惨，说自己压力超大、最委屈",
+      "D. 冷着不说话，逼你主动道歉哄他（她）"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "3. 你提出自己喜欢的出行/约会计划，对方（他/她）会？",
+    opts: [
+      "A. 尊重你的喜好，一起商量",
+      "B. 直接否定，必须按他（她）的安排来",
+      "C. 嘴上答应，全程摆脸、吐槽、让你愧疚",
+      "D. 敷衍同意，临时放鸽子、临时变卦"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "4. 合照、朋友圈、对外展示形象时，对方（他/她）会？",
+    opts: [
+      "A. 公平挑选、尊重你的感受",
+      "B. 只精修自己（她/他），放你的原图",
+      "C. 嫌弃你不上镜，怪你拉低整体颜值",
+      "D. 对外完美人设，私下对你挑剔苛刻"
+    ],
+    score: ["A0", "B1", "C1", "D2"]
+  },
+  {
+    q: "5. 你提出和他（她）不一样的观点、想法，对方（他/她）会？",
+    opts: [
+      "A. 愿意倾听、平等交流",
+      "B. 立刻说教碾压，一定要说服你认输",
+      "C. 嘲讽你认知浅薄、想法幼稚",
+      "D. 无视你的观点，强行输出自己逻辑"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "6. 你委屈难过、崩溃掉眼泪时，对方（他/她）会？",
+    opts: [
+      "A. 安抚陪伴、耐心倾听",
+      "B. 嫌你矫情、麻烦、情绪拖累人",
+      "C. 比你更委屈，开始诉说自己更惨",
+      "D. 短暂哄你，事后拿你脆弱反复说事"
+    ],
+    score: ["A0", "B1", "C1", "D2"]
+  },
+  {
+    q: "7. 刚追求你时超热情、超偏爱，稳定关系后，对方（他/她）会？",
+    opts: [
+      "A. 温柔稳定、踏实陪伴",
+      "B. 断崖式冷淡，疯狂挑你缺点",
+      "C. 一边付出一边反复暗示你要感恩",
+      "D. 忽冷忽热，心情好就宠、不爽就冷"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "8. 你指出对方（他/她）的问题、小错误，对方（他/她）会？",
+    opts: [
+      "A. 愿意反思调整，正视问题",
+      "B. 反驳：是你太敏感，是你理解错了",
+      "C. 嘴上认错，行为完全不改，重复犯错",
+      "D. 直接暴怒，指责你总挑刺伤害他（她）"
+    ],
+    score: ["A0", "B1", "C1", "D2"]
+  },
+  {
+    q: "9. 你和对方（他/她）聊你过往的苦难经历，对方（他/她）会？",
+    opts: [
+      "A. 共情心疼，认真倾听你的遭遇",
+      "B. 接过话题，讲自己更悲惨的故事抢焦点",
+      "C. 安慰你，暗示你需要依靠他（她）保护",
+      "D. 简单敷衍，快速转回聊他（她）自己"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "10. 你想要拥有自主选择权，对方（他/她）会？",
+    opts: [
+      "A. 尊重你的选择，共同商量",
+      "B. 持续施压，直到你顺从他（她）的安排",
+      "C. 嘴上让你选，事后不断抱怨让你愧疚",
+      "D. 直接替你做决定，不问你的想法"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "11. 吵架结束，你希望复盘矛盾好好沟通，对方（他/她）会？",
+    opts: [
+      "A. 冷静后一起复盘，寻找解决办法",
+      "B. 开启冷暴力消失，等你低头求和",
+      "C. 不停诉说吵架给他（她）带来巨大伤害",
+      "D. 翻旧账罗列你的过错，证明你亏欠对方"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "12. 同样一件事，他（她）犯错可以被原谅，轮到你犯错，对方（他/她）？",
+    opts: [
+      "A. 就事论事，不会双重标准苛责你",
+      "B. 严厉指责，放大你的错误要求反省",
+      "C. 抓住错误反复提起，用来证明你不够好",
+      "D. 嘴上原谅，长期拿这件事打压你"
+    ],
+    score: ["A0", "B1", "C1", "D2"]
+  },
+  {
+    q: "13. 你分享新买的衣服、审美穿搭，对方（他/她）？",
+    opts: [
+      "A. 认真欣赏，给出真诚评价",
+      "B. 直接点评不好看，贬低你的审美品味",
+      "C. 告诉你这件衣服配不上他（她）、配不上场合",
+      "D. 表面夸奖，转头和别人吐槽你的眼光"
+    ],
+    score: ["A0", "B1", "C1", "D2"]
+  },
+  {
+    q: "14. 你取得一项重要成就，对方（他/她）？",
+    opts: [
+      "A. 由衷为你高兴，和你一起庆祝",
+      "B. 泼冷水：这没什么了不起，换别人也可以做到",
+      "C. 马上讲自己过往成就，压过你的高光",
+      "D. 内心嫉妒，之后专门挑你的其他毛病"
+    ],
+    score: ["A0", "B1", "C2", "D1"]
+  },
+  {
+    q: "15. 相处中对方（他/她）提起前任或者追求者，通常会？",
+    opts: [
+      "A. 客观提及，不拿来干扰你们关系",
+      "B. 拿别人对比你，制造危机感逼你讨好",
+      "C. 讲述前任伤害自己，塑造受害者人设",
+      "D. 炫耀很多人喜欢他（她），让你珍惜"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "16. 明明是对方（他/她）记错、做错，对方（他/她）会？",
+    opts: [
+      "A. 核对事实，承认记错并且道歉",
+      "B. 颠倒黑白，让你怀疑是自己记忆出错",
+      "C. 承认表面事实，把根源全部推给你",
+      "D. 回避话题，拒绝讨论这件事"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "17. 多人朋友聚会聊天，对方（他/她）？",
+    opts: [
+      "A. 轮流倾听，照顾所有人感受",
+      "B. 抢话主导全场，不停展示自己的高光事迹",
+      "C. 塑造善良无私形象，私下对你挑剔打压",
+      "D. 不断讲述苦难经历，博取众人同情"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "18. 你拥有独立朋友圈，经常和朋友外出，对方（他/她）？",
+    opts: [
+      "A. 支持你拥有自己社交圈，信任你",
+      "B. 贬低你的朋友，劝你减少来往",
+      "C. 表现委屈，说陪伴太少，制造你的愧疚",
+      "D. 表面无所谓，偷偷打探你的聊天记录"
+    ],
+    score: ["A0", "B1", "C1", "D2"]
+  },
+  {
+    q: "19. 道理在你这边，和对方（他/她）争论，对方（他/她）？",
+    opts: [
+      "A. 尊重事实，输了也不迁怒于你",
+      "B. 一定要赢，偷换逻辑压制你的观点",
+      "C. 直接生气，指责争吵伤害感情",
+      "D. 中途卖惨，让你不忍心继续争辩"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "20. 你提出结束这段关系，想要分开，对方（他/她）？",
+    opts: [
+      "A. 尊重你的决定，体面分开",
+      "B. 怀旧示弱，回忆美好试图把你拉回去",
+      "C. 立刻翻脸，到处散播你的负面评价",
+      "D. 疯狂诉说没有你他（她）活不下去，用情绪绑架你"
+    ],
+    score: ["A0", "B1", "C2", "D1"]
+  },
+  {
+    q: "21. 对方（他/她）帮你做了一件小事之后，通常会？",
+    opts: [
+      "A. 举手之劳，不会反复提起",
+      "B. 长期反复提起，提醒你亏欠他（她）",
+      "C. 对外宣扬自己付出很多，塑造好人形象",
+      "D. 把这件事当筹码，吵架时拿来指责你"
+    ],
+    score: ["A0", "B1", "C1", "D2"]
+  },
+  {
+    q: "22. 你坚持自己的边界，不再顺着对方（他/她），对方（他/她）会？",
+    opts: [
+      "A. 尊重边界，调整相处方式",
+      "B. 冷暴力惩罚你，直到你妥协",
+      "C. 扮演受伤者，说你无情伤害他（她）",
+      "D. 开始针对你的弱点，精准打击你的自信"
+    ],
+    score: ["A0", "B1", "C1", "D2"]
+  },
+  {
+    q: "23. 聊到金钱、资源或重要安排时，对方（他/她）通常？",
+    opts: [
+      "A. 互相体谅，公平协商",
+      "B. 认为自己更特殊，理应优先满足",
+      "C. 卖惨装弱，暗示你应该多付出",
+      "D. 控制决策权，要求你听他（她）安排"
+    ],
+    score: ["A0", "B1", "C1", "D2"]
+  },
+  {
+    q: "24. 你向对方（他/她）倾诉脆弱和恐惧，对方（他/她）会？",
+    opts: [
+      "A. 安抚你，替你保密",
+      "B. 记住你的软肋，冲突时拿来攻击你",
+      "C. 对比自己的痛苦，说你的烦恼不值一提",
+      "D. 表面安慰，转头和别人分享你的秘密"
+    ],
+    score: ["A0", "B2", "C1", "D1"]
+  },
+  {
+    q: "25. 回想这段关系，你大多数时候的状态更接近？",
+    opts: [
+      "A. 放松安心，可以自然做自己",
+      "B. 小心翼翼，生怕说错话惹对方不满",
+      "C. 经常自我怀疑，是不是自己要求太高",
+      "D. 总觉得亏欠对方，不断想补偿"
+    ],
+    score: ["A0", "B1", "C1", "D2"]
+  }
+];
+
+let current = 0;
+const answers = new Array(questions.length).fill(-1);
+
+const questionsWrap = document.getElementById("questionsWrap");
+const progressFill = document.getElementById("progressFill");
+const progressText = document.getElementById("progressText");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const submitBtn = document.getElementById("submitBtn");
+const resultCard = document.getElementById("resultCard");
+const previewTitle = document.getElementById("previewTitle");
+const previewText = document.getElementById("previewText");
+const fullResult = document.getElementById("fullResult");
+
+function renderQuestion() {
+  const q = questions[current];
+  questionsWrap.innerHTML = "";
+
+  const title = document.createElement("div");
+  title.className = "question";
+  title.textContent = q.q;
+  questionsWrap.appendChild(title);
+
+  const options = document.createElement("div");
+  options.className = "options";
+
+  q.opts.forEach((opt, i) => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.textContent = opt;
+    if (answers[current] === i) div.classList.add("selected");
+    div.onclick = () => {
+      answers[current] = i;
+      renderQuestion();
+    };
+    options.appendChild(div);
+  });
+
+  questionsWrap.appendChild(options);
+
+  progressFill.style.width = ((current + 1) / questions.length * 100) + "%";
+  progressText.textContent = `${current + 1} / ${questions.length}`;
+
+  prevBtn.style.display = current === 0 ? "none" : "inline-block";
+
+  if (current === questions.length - 1) {
+    nextBtn.style.display = "none";
+    submitBtn.style.display = "inline-block";
+  } else {
+    nextBtn.style.display = "inline-block";
+    submitBtn.style.display = "none";
+  }
+}
+
+prevBtn.onclick = () => {
+  if (current > 0) {
+    current--;
+    renderQuestion();
+  }
+};
+
+nextBtn.onclick = () => {
+  if (answers[current] === -1) {
+    alert("请先选择一个选项。");
+    return;
+  }
+  if (current < questions.length - 1) {
+    current++;
+    renderQuestion();
+  }
+};
+
+submitBtn.onclick = () => {
+  if (answers.includes(-1)) {
+    alert("请完成所有题目后再查看结果。");
+    return;
+  }
+  showResult();
+};
+
+function calcResult() {
+  const scores = {
+    "夸大型显性NPD": 0,
+    "脆弱受害者型NPD": 0,
+    "权力掌控型NPD": 0,
+    "虚荣形象型NPD": 0,
+    "智识说教型NPD": 0,
+    "恶性施虐型NPD": 0
+  };
+
+  const mapping = {
+    "夸大型显性NPD": ["B2", "D2", "B2", "D2", "B2", "D2", "B2", "D2", "B2", "D2", "B2", "D2", "D2", "C2", "B2", "B2", "B2", "D2", "B2", "C2", "D2", "D2", "D2", "B2", "D2"],
+    "脆弱受害者型NPD": ["C1", "C1", "C1", "D1", "C1", "C1", "C1", "C1", "C1", "C1", "C1", "C1", "D1", "D1", "C1", "C1", "D1", "C1", "D1", "D1", "C1", "C1", "C1", "C1", "C1"],
+    "权力掌控型NPD": ["B1", "B2", "B2", "C1", "B1", "B1", "B1", "B1", "B1", "B2", "B2", "B1", "B1", "B1", "B2", "B2", "B1", "B1", "B2", "B1", "B1", "B1", "B2", "B1", "B1"],
+    "虚荣形象型NPD": ["D1", "D1", "D1", "B2", "D1", "D1", "D1", "D1", "D1", "D1", "D1", "D1", "B1", "D1", "D1", "D1", "C1", "B1", "D1", "B1", "C1", "B1", "B1", "D1", "B1"],
+    "智识说教型NPD": ["B1", "B1", "B1", "B1", "B2", "B1", "B1", "B1", "B1", "B1", "B1", "B1", "B1", "B1", "B1", "B1", "B1", "B1", "B2", "B1", "B1", "B1", "B1", "B1", "B1"],
+    "恶性施虐型NPD": ["D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2", "D2"]
+  };
+
+  questions.forEach((q, i) => {
+    const chosen = answers[i];
+    const key = q.score[chosen];
+    for (const type in mapping) {
+      if (mapping[type][i] === key) {
+        scores[type]++;
+      }
+    }
+  });
+
+  let maxType = "夸大型显性NPD";
+  let maxScore = 0;
+  for (const type in scores) {
+    if (scores[type] > maxScore) {
+      maxScore = scores[type];
+      maxType = type;
+    }
+  }
+
+  return { type: maxType, scores };
+}
+
+// 单独每种类型的解读
+const resultInfo = {
+  "夸大型显性NPD":{
+    preview:"对方更偏向夸大型显性NPD模式。这类人常通过炫耀、压制、否定他人来维持优越感，相处中你可能会感到自己的价值被不断压缩。",
+    content:`
+    <div class="subtype-card">
+      <div class="subtype-title">夸大型显性NPD</div>
+      <div class="subtype-section">
+        <strong>对方常用手段：</strong>公开炫耀优越感，直接贬低你的工作、审美和能力；被反驳时容易当场暴怒；喜欢用成就、地位或口才证明自己特殊。
+      </div>
+      <div class="subtype-section">
+        <strong>脱身办法：</strong>你不需要通过争辩来证明自己，也不用反复解释细节。对方越发现你在意，越容易把争执变成权力游戏。你可以先减少正面交锋，不辩解、不反击、不寻求认可，只在关键问题上简短划清边界。如果对方持续羞辱、攻击或控制你的选择，请优先考虑降低接触，保护自己的情绪和自尊。
+      </div>
+    </div>`
+  },
+  "脆弱受害者型NPD":{
+    preview:"对方更偏向脆弱受害者型NPD模式。这类人很擅长用委屈、示弱和道德绑架获得关注，你容易在关系中不断心软、妥协和自我怀疑。",
+    content:`
+    <div class="subtype-card">
+      <div class="subtype-title">脆弱受害者型NPD</div>
+      <div class="subtype-section">
+        <strong>对方常用手段：</strong>长期卖惨、强调自己被亏欠、用委屈和眼泪制造愧疚；表面脆弱自卑，却会通过被动攻击、冷暴力和道德绑架让你妥协。
+      </div>
+      <div class="subtype-section">
+        <strong>脱身办法：</strong>你会忍不住心软，是因为你善良，不是因为你有责任拯救对方。请先停止把对方的痛苦归因为自己不够体贴，也不要再用“我再忍一忍就会好”来补偿对方。面对持续卖惨，可以保持平静但不再主动安抚；面对冷暴力，不低头、不哄劝、不提供情绪反馈。你的共情和时间，应该留给真正平等沟通的人。
+      </div>
+    </div>`
+  },
+  "权力掌控型NPD":{
+    preview:"对方更偏向权力掌控型NPD模式。这类人习惯把关系变成控制与服从的博弈，会逐步影响你的选择、社交和生活节奏。",
+    content:`
+    <div class="subtype-card">
+      <div class="subtype-title">权力掌控型NPD</div>
+      <div class="subtype-section">
+        <strong>对方常用手段：</strong>从小事开始试探边界，逐步控制你的社交、消费、时间和决策；你顺从时短暂示好，你反抗时立刻惩罚、冷落或施压。
+      </div>
+      <div class="subtype-section">
+        <strong>脱身办法：</strong>你现在感到压抑，不是因为你不够独立，而是因为对方一直在一点点压缩你的选择权。你可以先从很小的事情开始坚定拒绝，不需要复杂谈判，也不需要得到对方同意。低调恢复自己的社交圈、生活节奏和独立空间，减少个人信息暴露，避免把所有情绪需求都放在对方身上。脱离控制不一定需要激烈翻脸，稳定、持续、不动摇的边界更能保护你。
+      </div>
+    </div>`
+  },
+  "虚荣形象型NPD":{
+    preview:"对方更偏向虚荣形象型NPD模式。这类人对外非常在意形象和评价，却可能把你当成衬托自己人设的工具，私下挑剔、内外反差明显。",
+    content:`
+    <div class="subtype-card">
+      <div class="subtype-title">虚荣形象型NPD</div>
+      <div class="subtype-section">
+        <strong>对方常用手段：</strong>对外打造完美人设，极度在意颜值、评价和社交形象；把你当作形象配件，私下挑剔你的外表、品味和表现。
+      </div>
+      <div class="subtype-section">
+        <strong>脱身办法：</strong>你会怀疑自己不够好，不是因为你真的不够好，而是因为对方一直在用外在标准定义你的价值。请停止配合对方维护形象，不帮他（她）圆场，不参与对外表演，也不再因为“看起来不般配”而自我修正。真正的关系不是一个人发光、另一个人当背景，而是两个人都能自然做自己。如果对方持续把你当成衬托，你可以开始减少投入，把注意力放回自己的生活和目标。
+      </div>
+    </div>`
+  },
+  "智识说教型NPD":{
+    preview:"对方更偏向智识说教型NPD模式。这类人喜欢用道理、认知和口才压制你，争论不是为了解决问题，而是为了证明自己更高一等。",
+    content:`
+    <div class="subtype-card">
+      <div class="subtype-title">智识说教型NPD</div>
+      <div class="subtype-section">
+        <strong>对方常用手段：</strong>用学识、专业、逻辑和认知碾压你；不断否定你的判断，争论必须赢；把沟通变成一场证明你错、他（她）对的比赛。
+      </div>
+      <div class="subtype-section">
+        <strong>脱身办法：</strong>你不需要赢下每一场争论，也不需要通过对方的认可来确认自己的判断。对方越讲逻辑，你越容易陷入证明自己的陷阱。遇到长篇说教，可以直接终止话题，不解释、不辩论、不陪跑。你的观点不需要获得对方批准，你的情绪和选择也不该被“道理”压制。
+      </div>
+    </div>`
+  },
+  "恶性施虐型NPD":{
+    preview:"对方更偏向恶性施虐型NPD模式。这类人可能会通过否定、扭曲事实、挑拨或针对性打击来摧毁你的自信，关系风险较高。",
+    content:`
+    <div class="subtype-card">
+      <div class="subtype-title">恶性施虐型NPD</div>
+      <div class="subtype-section">
+        <strong>对方常用手段：</strong>故意否定你的感受、扭曲事实、制造自我怀疑；抓住你的软肋反复攻击；用回吸、抹黑、孤立等方式维持控制。
+      </div>
+      <div class="subtype-section">
+        <strong>脱身办法：</strong>如果对方已经出现明显的羞辱、扭曲事实、针对性打击或名誉伤害，请优先把安全放在第一位。你不需要再解释自己，也不用期待对方会突然改变。建议尽快建立清晰退路，保存重要记录，减少单独接触，必要时联系可信任的亲友、律师或专业机构。停止接触不是逃避，而是停止继续被伤害。
+      </div>
+    </div>`
+  }
+};
+
+function showResult() {
+  const result = calcResult();
+  const type = result.type;
+  const info = resultInfo[type];
+
+  resultCard.style.display = "block";
+  previewTitle.textContent = "你遇到的亚型：" + type;
+  previewText.textContent = info.preview;
+  fullResult.innerHTML = info.content; // 只渲染当前匹配到的那一段
+
+  resultCard.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+</script>
+</body>
+</html>
